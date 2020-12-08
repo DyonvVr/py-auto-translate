@@ -1,0 +1,21 @@
+# USAGE
+#
+# Key translator_provider takes options google and bing.
+# 
+# Source and target languages must be specified using language codes supported by Google Translate.
+# See https://cloud.google.com/translate/docs/languages for avaiable languages and their codes.
+# Default source language is auto (automatic detection). Default target language is en (English).
+#
+# Key write_mode takes options txt (for a text file) and tex (for a LaTeX file).
+#
+# Key tex_build_dir takes options true (make separate dir for tex files) or false.
+#
+# Key laerning_method takes options true (Ilya Frank style aided translation) or false (bare translation).
+
+translator_provider = bing
+source_lang = auto
+target_lang = en
+verbose = true
+write_mode = tex
+tex_build_dir = true
+learning_method = true
