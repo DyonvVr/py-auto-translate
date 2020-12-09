@@ -4,7 +4,7 @@ Besides bare translation, it offers a mode for word-by-word translation accompan
 Auto translate offers support for Google and Bing translators.
 Furthermore, Auto translate can build LaTeX files for the creation of nicely formatted PDF files containing the translation, using the [polyglossia](https://ctan.org/pkg/polyglossia) package for multilingual typesetting. These files must be compiled with XeLaTeX or LuaLaTeX.
 
-# Installation
+## Installation
 Make sure you have Python 3 installed.
 Furthermore install the following dependencies (for example via the `pip install` command):
 - `googletrans==3.1.0a0`
@@ -15,16 +15,16 @@ Furthermore install the following dependencies (for example via the `pip install
 - `numpy`
 - `re`
 
-# Usage
+## Usage
 Place a text file in the directory where `auto_translate.py` is located, and run the following command in the terminal:
 ```
 python auto_translate.py <text file>
 ```
 This produes an output (either as a text or LaTeX file) in the same directory.
 
-# Configuration
+## Configuration
 The `config` file lists several options for Auto translate (such as which translation provider to use) which can be set to one own's preferences.
 
-# To do
+## To do
 - Yandex translation support
 - Better handling of input/output directories
