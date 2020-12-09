@@ -1,0 +1,33 @@
+# CONFIGURATION
+
+# Which provider to use for translation. Options: "google" (default), "bing".
+translator_provider = bing
+
+# Language from which to translate. Must be provided as a language code or "auto" (for automatic
+# language detection).
+# See
+# https://cloud.google.com/translate/docs/languages
+# and
+# https://docs.microsoft.com/en-us/azure/cognitive-services/translator/language-support
+# for supported language codes.
+# Default is "auto".
+source_lang = auto
+
+# Language to which to translate. Cannot be "auto". Default is "en".
+target_lang = en
+
+# Whether to print each sentence and corresponding translation in the terminal. Options: "true",
+# "false" (default).
+verbose = true
+
+# Whether to write output to a text file ("txt", default) or as a formatted LaTeX file with polyglossia
+# support ("tex").
+write_mode = tex
+
+# Whether to write a LaTeX file to a separate build directory. Options: "true", "false" (default).
+tex_build_dir = true
+
+# Whether to implement an Ilya Frank style translation method. Besides the sentence, this also
+# provides a word-by-word translation. Warning: setting this to "true" significantly increases the
+# number of calls made to the translation API. Options: "true", "false" (default).
+learning_method = true
