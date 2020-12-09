@@ -1,7 +1,10 @@
 # py-auto-translate
 The aim of this Python script is to provide an automatic multilingual translation of text bodies of language learning purposes.
+
 Besides bare translation, it offers a mode for word-by-word translation accompanying the text translation, for easy lookup and better understanding of new words. This was inspired by Ilya Frank's reading method, about which you can read more [here](http://english.franklang.ru/index.php?option=com_content&view=article&id=1&Itemid=11).
+
 Auto translate offers support for Google and Bing translators.
+
 Furthermore, Auto translate can build LaTeX files for the creation of nicely formatted PDF files containing the translation, using the [polyglossia](https://ctan.org/pkg/polyglossia) package for multilingual typesetting. These files must be compiled with XeLaTeX or LuaLaTeX.
 
 ## Installation
