@@ -18,6 +18,7 @@ Furthermore install the following dependencies (for example via the `pip install
 - `pandas`
 - `numpy`
 - `re`
+
 In order to use Google Cloud Translate API translation, you must set up a Google Cloud project with Translate API enabled.
 
 ## Usage
