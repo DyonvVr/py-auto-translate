@@ -33,4 +33,5 @@ The `config` file lists several options for Auto translate (such as which transl
 - Yandex translation support
 - Better handling of input/output directories
 
+### Notes
  *User is responsible for the costs of using Google Cloud services.
