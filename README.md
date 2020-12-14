@@ -1,5 +1,5 @@
 # py-auto-translate
-The aim of this Python script is to provide an automatic multilingual translation of text bodies of language learning purposes.
+The aim of this Python script is to provide an automatic multilingual translation of text bodies for language learning purposes.
 
 Besides bare translation, it offers a mode for word-by-word translation accompanying the text translation, for easy lookup and better understanding of new words. This was inspired by Ilya Frank's reading method, about which you can read more [here](http://english.franklang.ru/index.php?option=com_content&view=article&id=1&Itemid=11).
 
@@ -32,7 +32,7 @@ This produes an output (either as a text or LaTeX file) in the same directory.
 The `config` file lists several options for Auto translate (such as which translation provider to use) which can be set to one own's preferences.
 
 ## To do
-- Better handling of input/output directories
+- Better handling of output directories
 - Better tracking of translated characters
 - Exclusion of words from user made list
 
