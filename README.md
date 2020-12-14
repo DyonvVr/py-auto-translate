@@ -31,8 +31,9 @@ This produes an output (either as a text or LaTeX file) in the same directory.
 The `config` file lists several options for Auto translate (such as which translation provider to use) which can be set to one own's preferences.
 
 ## To do
-- Yandex translation support
 - Better handling of input/output directories
+- Better tracking of translated characters
+- Exclusion of words from user made list
 
 ### Notes
 *User is responsible for the costs of using Google Cloud services.
