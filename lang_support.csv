@@ -1,136 +1,136 @@
-;google;bing;yandex;polyglossia
-af;Afrikaans;Afrikaans;Afrikaans;afrikaans
-am;Amharic;;Amharic;amharic
-ar;Arabic;Arabic;Arabic;arabic
-as;;Assamese;;
-az;Azerbaijani;;Azerbaijani;
-ba;;;Bashkir;
-be;Belarusian;;Belarusian;belarusian
-bg;Bulgarian;Bulgarian;Bulgarian;bulgarian
-bn;Bengali;Bangla;Bengal;bengali
-bs;Bosnian;Bosnian (Latin);Bosnian;bosnian
-ca;Catalan;Catalan;Catalan;catalan
-ceb;Cebuano;;Cebuano;
-co;Corsican;;;
-cs;Czech;Czech;Czech;czech
-cy;Welsh;Welsh;Welsh;welsh
-da;Danish;Danish;Danish;danish
-de;German;German;German;german
-el;Greek;Greek;Greek;greek
-en;English;English;English;english
-eo;Esperanto;;Esperanto;esperanto
-es;Spanish;Spanish;Spanish;spanish
-et;Estonian;Estonian;Estonian;estonian
-eu;Basque;;Basque;basque
-fa;Persian;Persian;Persian;persian
-fi;Finnish;Finnish;Finnish;finnish
-fil;;Filipino;;
-fj;;Fijian;;
-fr;French;French;French;french
-fr-ca;;French (Canadian);;french
-fy;Frisian;;;
-ga;Irish;Irish;Irish;gaelic
-gd;Scots Gaelic;;Scottish;
-gl;Galician;;Galician;galician
-gu;Gujarati;Gujarati;Gujarati;
-ha;Hausa;;;
-haw;Hawaiian;;;
-he;Hebrew;Hebrew;Hebrew;hebrew
-hi;Hindi;Hindi;Hindi;hindi
-hmn;Hmong;;;
-hr;Croatian;Croatian;Croatian;croatian
-ht;Haitian Creole;Haitian Creole;Haitian (Creole);
-hu;Hungarian;Hungarian;Hungarian;hungarian
-hy;Armenian;;Armenian;armenian
-id;Indonesian;Indonesian;Indonesian;
-ig;Igbo;;;
-is;Icelandic;Icelandic;Icelandic;icelandic
-it;Italian;Italian;Italian;italian
-iw;Hebrew;;;hebrew
-ja;Japanese;Japanese;Japanese;japanese
-jv;Javanese;;Javanese;
-ka;Georgian;;Georgian;georgian
-kk;Kazakh;Kazakh;Kazakh;
-km;Khmer;;Khmer;khmer
-kmr;;Kurdish (Northern);;
-kn;Kannada;Kannada;Kannada;kannada
-ko;Korean;Korean;Korean;korean
-ku;Kurdish;Kurdish (Central);;kurdish
-ky;Kyrgyz;;Kirghiz;
-la;Latin;;Latin;latin
-lb;Luxembourgish;;Luxembourg;
-lo;Lao;;Laotian;lao
-lt;Lithuanian;Lithuanian;Lithuanian;lithuanian
-lv;Latvian;Latvian;Latvian;latvian
-mg;Malagasy;Malagasy;Malagasy;
-mhr;;;Mari;
-mi;Maori;Maori;Maori;
-mk;Macedonian;;Macedonian;macedonian
-ml;Malayalam;Malayalam;Malayalam;malayalam
-mn;Mongolian;;Mongolian;mongolian
-mr;Marathi;Marathi;Marathi;marathi
-mrj;;;Hill Mari;
-ms;Malay;Malay;Malay;malay
-mt;Maltese;Maltese;Maltese;
-mww;;Hmong Daw;;
-my;Myanmar (Burmese);;Burmese;
-nb;;Norwegian;;norwegian
-ne;Nepali;;Nepalese;
-nl;Dutch;Dutch;Dutch;dutch
-no;Norwegian;;Norwegian;norwegian
-ny;Nyanja (Chichewa);;;
-or;Odia (Oriya);Odia;;
-otq;;Queretaro Otomi;;
-pa;Punjabi;Punjabi;Punjabi;
-pap;;;Papiamento;
-pl;Polish;Polish;Polish;polish
-prs;;Dari;;
-ps;Pashto;Pashto;;
-pt;Portuguese;Portuguese;Portuguese;portuguese
-pt-br;;Portuguese (Brazil);;portuguese
-pt-pt;;Portuguese (Portugal);;portuguese
-ro;Romanian;Romanian;Romanian;romanian
-ru;Russian;Russian;Russian;russian
-rw;Kinyarwanda;;;
-sd;Sindhi;;;
-si;Sinhala (Sinhalese);;Sinhalese;
-sk;Slovak;Slovak;Slovak;slovak
-sl;Slovenian;Slovenian;Slovenian;slovenian
-sm;Samoan;Samoan;;
-sn;Shona;;;
-so;Somali;;;
-sq;Albanian;;Albanian;albanian
-sr;Serbian;;Serbian;serbian
-sr-Cyrl;;Serbian (Cyrillic);;serbian
-sr-Latn;;Serbian (Latin);;serbian
-st;Sesotho;;;
-su;Sundanese;;Sundanese;
-sv;Swedish;Swedish;Swedish;swedish
-sw;Swahili;Swahili;Swahili;
-ta;Tamil;Tamil;Tamil;tamil
-te;Telugu;Telugu;Telugu;telugu
-tg;Tajik;;Tajik;
-th;Thai;Thai;Thai;thai
-tk;Turkmen;;;turkmen
-tl;Tagalog (Filipino);;Tagalog;
-to;;Tongan;;
-tr;Turkish;Turkish;Turkish;turkish
-tt;Tatar;;Tartar;
-ty;;Tahitian;;
-udm;;;Udmurt;
-ug;Uyghur;;;
-uk;Ukrainian;Ukrainian;Ukrainian;ukrainian
-ur;Urdu;Urdu;Urdu;urdu
-uz;Uzbek;;Uzbek;
-vi;Vietnamese;Vietnamese;Vietnamese;vietnamese
-xh;Xhosa;;Xhosa;
-yi;Yiddish;;Yiddish;
-yo;Yoruba;;;
-yua;;Yucatec Maya;;
-yue;;Cantonese (Traditional);;
-zh;Chinese (Simplified);;Chinese;
-zh-CN;Chinese (Simplified);;;
-zh-Hans;;Chinese Simplified;;
-zh-Hant;;Chinese Traditional;;
-zh-TW;Chinese (Traditional);;;
-zu;Zulu;;;
+;google;google_cloud;bing;yandex;polyglossia
+af;Afrikaans;Afrikaans;Afrikaans;Afrikaans;afrikaans
+am;Amharic;Amharic;;Amharic;amharic
+ar;Arabic;Arabic;Arabic;Arabic;arabic
+as;;;Assamese;;
+az;Azerbaijani;Azerbaijani;;Azerbaijani;
+ba;;;;Bashkir;
+be;Belarusian;Belarusian;;Belarusian;belarusian
+bg;Bulgarian;Bulgarian;Bulgarian;Bulgarian;bulgarian
+bn;Bengali;Bengali;Bangla;Bengal;bengali
+bs;Bosnian;Bosnian;Bosnian (Latin);Bosnian;bosnian
+ca;Catalan;Catalan;Catalan;Catalan;catalan
+ceb;Cebuano;Cebuano;;Cebuano;
+co;Corsican;Corsican;;;
+cs;Czech;Czech;Czech;Czech;czech
+cy;Welsh;Welsh;Welsh;Welsh;welsh
+da;Danish;Danish;Danish;Danish;danish
+de;German;German;German;German;german
+el;Greek;Greek;Greek;Greek;greek
+en;English;English;English;English;english
+eo;Esperanto;Esperanto;;Esperanto;esperanto
+es;Spanish;Spanish;Spanish;Spanish;spanish
+et;Estonian;Estonian;Estonian;Estonian;estonian
+eu;Basque;Basque;;Basque;basque
+fa;Persian;Persian;Persian;Persian;persian
+fi;Finnish;Finnish;Finnish;Finnish;finnish
+fil;;;Filipino;;
+fj;;;Fijian;;
+fr;French;French;French;French;french
+fr-ca;;;French (Canadian);;french
+fy;Frisian;Frisian;;;
+ga;Irish;Irish;Irish;Irish;gaelic
+gd;Scots Gaelic;Scots Gaelic;;Scottish;
+gl;Galician;Galician;;Galician;galician
+gu;Gujarati;Gujarati;Gujarati;Gujarati;
+ha;Hausa;Hausa;;;
+haw;Hawaiian;Hawaiian;;;
+he;Hebrew;Hebrew;Hebrew;Hebrew;hebrew
+hi;Hindi;Hindi;Hindi;Hindi;hindi
+hmn;Hmong;Hmong;;;
+hr;Croatian;Croatian;Croatian;Croatian;croatian
+ht;Haitian Creole;Haitian Creole;Haitian Creole;Haitian (Creole);
+hu;Hungarian;Hungarian;Hungarian;Hungarian;hungarian
+hy;Armenian;Armenian;;Armenian;armenian
+id;Indonesian;Indonesian;Indonesian;Indonesian;
+ig;Igbo;Igbo;;;
+is;Icelandic;Icelandic;Icelandic;Icelandic;icelandic
+it;Italian;Italian;Italian;Italian;italian
+iw;Hebrew;Hebrew;;;hebrew
+ja;Japanese;Japanese;Japanese;Japanese;japanese
+jv;Javanese;Javanese;;Javanese;
+ka;Georgian;Georgian;;Georgian;georgian
+kk;Kazakh;Kazakh;Kazakh;Kazakh;
+km;Khmer;Khmer;;Khmer;khmer
+kmr;;;Kurdish (Northern);;
+kn;Kannada;Kannada;Kannada;Kannada;kannada
+ko;Korean;Korean;Korean;Korean;korean
+ku;Kurdish;Kurdish;Kurdish (Central);;kurdish
+ky;Kyrgyz;Kyrgyz;;Kirghiz;
+la;Latin;Latin;;Latin;latin
+lb;Luxembourgish;Luxembourgish;;Luxembourg;
+lo;Lao;Lao;;Laotian;lao
+lt;Lithuanian;Lithuanian;Lithuanian;Lithuanian;lithuanian
+lv;Latvian;Latvian;Latvian;Latvian;latvian
+mg;Malagasy;Malagasy;Malagasy;Malagasy;
+mhr;;;;Mari;
+mi;Maori;Maori;Maori;Maori;
+mk;Macedonian;Macedonian;;Macedonian;macedonian
+ml;Malayalam;Malayalam;Malayalam;Malayalam;malayalam
+mn;Mongolian;Mongolian;;Mongolian;mongolian
+mr;Marathi;Marathi;Marathi;Marathi;marathi
+mrj;;;;Hill Mari;
+ms;Malay;Malay;Malay;Malay;malay
+mt;Maltese;Maltese;Maltese;Maltese;
+mww;;;Hmong Daw;;
+my;Myanmar (Burmese);Myanmar (Burmese);;Burmese;
+nb;;;Norwegian;;norwegian
+ne;Nepali;Nepali;;Nepalese;
+nl;Dutch;Dutch;Dutch;Dutch;dutch
+no;Norwegian;Norwegian;;Norwegian;norwegian
+ny;Nyanja (Chichewa);Nyanja (Chichewa);;;
+or;Odia (Oriya);Odia (Oriya);Odia;;
+otq;;;Queretaro Otomi;;
+pa;Punjabi;Punjabi;Punjabi;Punjabi;
+pap;;;;Papiamento;
+pl;Polish;Polish;Polish;Polish;polish
+prs;;;Dari;;
+ps;Pashto;Pashto;Pashto;;
+pt;Portuguese;Portuguese;Portuguese;Portuguese;portuguese
+pt-br;;;Portuguese (Brazil);;portuguese
+pt-pt;;;Portuguese (Portugal);;portuguese
+ro;Romanian;Romanian;Romanian;Romanian;romanian
+ru;Russian;Russian;Russian;Russian;russian
+rw;Kinyarwanda;Kinyarwanda;;;
+sd;Sindhi;Sindhi;;;
+si;Sinhala (Sinhalese);Sinhala (Sinhalese);;Sinhalese;
+sk;Slovak;Slovak;Slovak;Slovak;slovak
+sl;Slovenian;Slovenian;Slovenian;Slovenian;slovenian
+sm;Samoan;Samoan;Samoan;;
+sn;Shona;Shona;;;
+so;Somali;Somali;;;
+sq;Albanian;Albanian;;Albanian;albanian
+sr;Serbian;Serbian;;Serbian;serbian
+sr-Cyrl;;;Serbian (Cyrillic);;serbian
+sr-Latn;;;Serbian (Latin);;serbian
+st;Sesotho;Sesotho;;;
+su;Sundanese;Sundanese;;Sundanese;
+sv;Swedish;Swedish;Swedish;Swedish;swedish
+sw;Swahili;Swahili;Swahili;Swahili;
+ta;Tamil;Tamil;Tamil;Tamil;tamil
+te;Telugu;Telugu;Telugu;Telugu;telugu
+tg;Tajik;Tajik;;Tajik;
+th;Thai;Thai;Thai;Thai;thai
+tk;Turkmen;Turkmen;;;turkmen
+tl;Tagalog (Filipino);Tagalog (Filipino);;Tagalog;
+to;;;Tongan;;
+tr;Turkish;Turkish;Turkish;Turkish;turkish
+tt;Tatar;Tatar;;Tartar;
+ty;;;Tahitian;;
+udm;;;;Udmurt;
+ug;Uyghur;Uyghur;;;
+uk;Ukrainian;Ukrainian;Ukrainian;Ukrainian;ukrainian
+ur;Urdu;Urdu;Urdu;Urdu;urdu
+uz;Uzbek;Uzbek;;Uzbek;
+vi;Vietnamese;Vietnamese;Vietnamese;Vietnamese;vietnamese
+xh;Xhosa;Xhosa;;Xhosa;
+yi;Yiddish;Yiddish;;Yiddish;
+yo;Yoruba;Yoruba;;;
+yua;;;Yucatec Maya;;
+yue;;;Cantonese (Traditional);;
+zh;Chinese (Simplified);Chinese (Simplified);;Chinese;
+zh-CN;Chinese (Simplified);Chinese (Simplified);;;
+zh-Hans;;;Chinese Simplified;;
+zh-Hant;;;Chinese Traditional;;
+zh-TW;Chinese (Traditional);Chinese (Traditional);;;
+zu;Zulu;Zulu;;;

@@ -4,6 +4,7 @@ import pandas as pd
 import os
 import re
 import sys
+import time
 import translators as ts
 from googletrans import Translator
 from google.cloud import translate_v2 as translate_gcp
@@ -14,6 +15,7 @@ class TranslatorWriter:
 		self.lang_support = pd.read_csv("lang_support.csv", sep=";", index_col=0)
 		self.translator_google = Translator()
 		self.translator_gcp = None
+		
 		if self.config["translator_provider"] == "google_cloud":
 			self.translator_gcp = translate_gcp.Client()
 	
@@ -44,19 +46,28 @@ class TranslatorWriter:
 			translation = self.translator_google.translate(source, src=source_lang, dest=target_lang)
 			target = translation.text
 			source_lang_detected = translation.src
-		elif self.config["translator_provider"] == "google_cloud":
-			translation = translator_gcp.translate(source, source_language=source_lang, target_language=target_lang)
+		elif self.config["translator_provider"] == "google_cloud":	
+			source_lang_translator = (None if source_lang=="auto" else source_lang)
+			translation = self.translator_gcp.translate\
+			(
+				source,
+				source_language=source_lang_translator,
+				target_language=target_lang
+			)
 			target = translation["translatedText"]
-			source_lang_detected = translation["detectedSourceLanguage"]
+			if source_lang == "auto": # changed to detected language code after detection
+				source_lang_detected = translation["detectedSourceLanguage"]
 		elif self.config["translator_provider"] == "bing":
 			translation = ts.bing(source, from_language=source_lang,
 								  to_language=target_lang, is_detail_result=True)
 			target = translation[0]["translations"][0]["text"]
 			source_lang_detected = translation[0]["detectedLanguage"]["language"]
 		
-		return {"target": target, "source_lang_detected": source_lang_detected}
+		return {"target": target, "source_lang_detected": source_lang_detected, "char_count": len(source)}
 	
-	def translate_write(self, source_file_name):				
+	def translate_write(self, source_file_name):
+		translated_chars = 0
+		
 		source_file = open(source_file_name, "r", encoding="utf-8")
 		source = " ".join(source_file.read().splitlines())
 		source_file.close()
@@ -65,8 +76,10 @@ class TranslatorWriter:
 		source_sentences = ["".join([s, t]) for s, t in zip(source_split[::2], source_split[1::2] + [""])]
 		
 		source_lang = self.config["source_lang"]
-		if self.config["source_lang"] == "auto":
-			source_lang = self.translate(source_sentences[0], source_lang)["source_lang_detected"]
+		if self.config["source_lang"] == "auto": # translate first sentence to detect source language
+			first_sentence_translation = self.translate(source_sentences[0], source_lang)
+			source_lang = first_sentence_translation["source_lang_detected"]
+			translated_chars += first_sentence_translation["char_count"]
 		
 		self.check_lang_support(source_lang, self.config["translator_provider"])
 		target_lang = self.config["target_lang"]
@@ -105,13 +118,17 @@ class TranslatorWriter:
 				if polyg_sup_trg is not np.nan:
 					target += "\\begin{{{}}}\n".format(polyg_sup_trg)
 		
-		for source_sentence in source_sentences:		
-			target_sentence = self.translate(source_sentence, source_lang)["target"]
+		for source_sentence in source_sentences:
+			sentence_translation = self.translate(source_sentence, source_lang)
+			target_sentence = sentence_translation["target"]
+			translated_chars += sentence_translation["char_count"]
 			
 			word_by_word_translation = []
 			for source_word in source_sentence[:-1].lower().split():
 				source_word_clean = re.sub("[\W+]", "", source_word)
-				target_word = self.translate(source_word_clean, source_lang)["target"]
+				word_translation = self.translate(source_word_clean, source_lang)
+				target_word = word_translation["target"]
+				translated_chars += word_translation["char_count"]
 				word_by_word_translation.append([source_word, target_word])
 			
 			if self.config["write_mode"] == "txt":
@@ -181,6 +198,8 @@ class TranslatorWriter:
 		target_file.write(target)
 		target_file.close()
 		
+		print()
+		print("{} characters translated".format(translated_chars))
 		print("Translation written to ./{}".format(target_file_name))
 
 def load_config():

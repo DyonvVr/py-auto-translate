@@ -3,11 +3,12 @@
 # Which provider to use for translation.
 # Option "google" (default) uses HTTP requests to https://translate.google.com to generate
 # translations. This is free, but may result in a temporary IP ban if quota are exceeded.
-# Option "google_cloud" uses Google Cloud Platform for translations. Requires setting up a GCP
-# account and an AutoML project. User is responsible for the costs of using GCP.
+# Option "google_cloud" uses Google Cloud Platform for translations. Requires registering a GCP
+# account and setting up a project with the Translation API enabled. User is responsible for the
+# costs of using GCP.
 # Option "bing" uses HTTP requests to https://www.bing.com/translator. Free, but may result
 # in a temporary IP ban.
-translator_provider = google
+translator_provider = google_cloud
 
 # Language from which to translate. Must be provided as a language code or "auto" (for automatic
 # language detection).

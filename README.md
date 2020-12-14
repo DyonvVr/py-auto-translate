@@ -3,7 +3,7 @@ The aim of this Python script is to provide an automatic multilingual translatio
 
 Besides bare translation, it offers a mode for word-by-word translation accompanying the text translation, for easy lookup and better understanding of new words. This was inspired by Ilya Frank's reading method, about which you can read more [here](http://english.franklang.ru/index.php?option=com_content&view=article&id=1&Itemid=11).
 
-Auto translate offers support for the Google and Bing webpage translators, as well as the Google Cloud AutoML translate engine*.
+Auto translate offers support for the Google and Bing web page translators, as well as the Google Cloud Translate API*.
 
 Furthermore, Auto translate can build LaTeX files for the creation of nicely formatted PDF files containing the translation, using the [polyglossia](https://ctan.org/pkg/polyglossia) package for multilingual typesetting. These files must be compiled with XeLaTeX or LuaLaTeX.
 
@@ -18,6 +18,7 @@ Furthermore install the following dependencies (for example via the `pip install
 - `pandas`
 - `numpy`
 - `re`
+In order to use Google Cloud Translate API translation, you must set up a Google Cloud project with Translate API enabled.
 
 ## Usage
 Place a text file in the directory where `auto_translate.py` is located, and run the following command in the terminal:
@@ -34,4 +35,4 @@ The `config` file lists several options for Auto translate (such as which transl
 - Better handling of input/output directories
 
 ### Notes
- *User is responsible for the costs of using Google Cloud services.
+*User is responsible for the costs of using Google Cloud services.
