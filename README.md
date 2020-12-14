@@ -5,7 +5,7 @@ Besides bare translation, it offers a mode for word-by-word translation accompan
 
 Auto translate offers support for the Google and Bing web page translators, as well as the Google Cloud Translate API*.
 
-Furthermore, Auto translate can build LaTeX files for the creation of nicely formatted PDF files containing the translation, using the [polyglossia](https://ctan.org/pkg/polyglossia) package for multilingual typesetting. These files must be compiled with XeLaTeX or LuaLaTeX.
+Furthermore, Auto translate can build LaTeX files for the creation of nicely formatted PDF documents containing the translation, using the [polyglossia](https://ctan.org/pkg/polyglossia) package for multilingual typesetting. These files must be compiled with XeLaTeX or LuaLaTeX.
 
 ## Installation
 Make sure you have Python 3 installed.
