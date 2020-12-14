@@ -1,7 +1,13 @@
 # CONFIGURATION
 
-# Which provider to use for translation. Options: "google" (default), "bing".
-translator_provider = bing
+# Which provider to use for translation.
+# Option "google" (default) uses HTTP requests to https://translate.google.com to generate
+# translations. This is free, but may result in a temporary IP ban if quota are exceeded.
+# Option "google_cloud" uses Google Cloud Platform for translations. Requires setting up a GCP
+# account and an AutoML project. User is responsible for the costs of using GCP.
+# Option "bing" uses HTTP requests to https://www.bing.com/translator. Free, but may result
+# in a temporary IP ban.
+translator_provider = google
 
 # Language from which to translate. Must be provided as a language code or "auto" (for automatic
 # language detection).
@@ -20,8 +26,8 @@ target_lang = en
 # "false" (default).
 verbose = true
 
-# Whether to write output to a text file ("txt", default) or as a formatted LaTeX file with polyglossia
-# support ("tex").
+# Whether to write output to a text file ("txt", default) or as a formatted LaTeX file with
+# polyglossia support ("tex").
 write_mode = tex
 
 # Whether to write a LaTeX file to a separate build directory. Options: "true", "false" (default).

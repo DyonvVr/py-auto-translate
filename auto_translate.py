@@ -6,12 +6,16 @@ import re
 import sys
 import translators as ts
 from googletrans import Translator
+from google.cloud import translate_v2 as translate_gcp
 
 class TranslatorWriter:
 	def __init__(self, config):
 		self.config = config
 		self.lang_support = pd.read_csv("lang_support.csv", sep=";", index_col=0)
-		self.google_translator = Translator()
+		self.translator_google = Translator()
+		self.translator_gcp = None
+		if self.config["translator_provider"] == "google_cloud":
+			self.translator_gcp = translate_gcp.Client()
 	
 	def check_lang_support(self, lang, translator_provider):
 		direction = ""
@@ -37,9 +41,13 @@ class TranslatorWriter:
 		source_lang_detected = ""
 		
 		if self.config["translator_provider"] == "google":
-			translation = self.google_translator.translate(source, src=source_lang, dest=target_lang)
+			translation = self.translator_google.translate(source, src=source_lang, dest=target_lang)
 			target = translation.text
 			source_lang_detected = translation.src
+		elif self.config["translator_provider"] == "google_cloud":
+			translation = translator_gcp.translate(source, source_language=source_lang, target_language=target_lang)
+			target = translation["translatedText"]
+			source_lang_detected = translation["detectedSourceLanguage"]
 		elif self.config["translator_provider"] == "bing":
 			translation = ts.bing(source, from_language=source_lang,
 								  to_language=target_lang, is_detail_result=True)
@@ -53,9 +61,12 @@ class TranslatorWriter:
 		source = " ".join(source_file.read().splitlines())
 		source_file.close()
 		
+		source_split = re.split(r"([\.\?!…]+ )", source)
+		source_sentences = ["".join([s, t]) for s, t in zip(source_split[::2], source_split[1::2] + [""])]
+		
 		source_lang = self.config["source_lang"]
 		if self.config["source_lang"] == "auto":
-			source_lang = self.translate(source, source_lang)["source_lang_detected"]
+			source_lang = self.translate(source_sentences[0], source_lang)["source_lang_detected"]
 		
 		self.check_lang_support(source_lang, self.config["translator_provider"])
 		target_lang = self.config["target_lang"]
@@ -93,9 +104,6 @@ class TranslatorWriter:
 			if self.config["learning_method"] == "false":
 				if polyg_sup_trg is not np.nan:
 					target += "\\begin{{{}}}\n".format(polyg_sup_trg)
-		
-		source_split = re.split(r"([\.\?!…]+ )", source)
-		source_sentences = ["".join([s, t]) for s, t in zip(source_split[::2], source_split[1::2] + [""])]
 		
 		for source_sentence in source_sentences:		
 			target_sentence = self.translate(source_sentence, source_lang)["target"]
@@ -206,7 +214,7 @@ def load_config():
 		option = partition[2].strip()
 		
 		if key == "translator_provider":
-			if option in ["google", "bing"] + [""]:
+			if option in ["google", "google_cloud", "bing"] + [""]:
 				config["translator_provider"] = option
 			else:
 				raise ValueError("option \"{}\" unknown for key \"{}\" in config line {}: \"{}\"".format(option, key, line_count, line))
@@ -239,7 +247,7 @@ def load_config():
 		
 	# default options
 	if config["translator_provider"] == "":
-		config["translator_provider"] = "bing"
+		config["translator_provider"] = "google"
 	if config["source_lang"] == "":
 		config["source_lang"] = "auto"
 	if config["target_lang"] == "":
