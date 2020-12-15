@@ -6,6 +6,7 @@ import re
 import sys
 import time
 import translators as ts
+from datetime import datetime
 from googletrans import Translator
 from google.cloud import translate_v2 as translate_gcp
 
@@ -15,6 +16,7 @@ class TranslatorWriter:
 		self.lang_support = pd.read_csv("lang_support.csv", sep=";", index_col=0)
 		self.translator_google = Translator()
 		self.translator_gcp = None
+		self.word_skip_list = None
 		
 		if self.config["translator_provider"] == "google_cloud":
 			self.translator_gcp = translate_gcp.Client()
@@ -65,6 +67,14 @@ class TranslatorWriter:
 		
 		return {"target": target, "source_lang_detected": source_lang_detected, "char_count": len(source)}
 	
+	def is_in_skip_list(self, word):
+		if self.word_skip_list == None:
+			return False
+		for regex in self.word_skip_list:
+			if re.fullmatch(regex, word):
+				return True
+		return False
+	
 	def translate_write(self, source_file_name):
 		translated_chars = 0
 		
@@ -80,6 +90,7 @@ class TranslatorWriter:
 			first_sentence_translation = self.translate(source_sentences[0], source_lang)
 			source_lang = first_sentence_translation["source_lang_detected"]
 			translated_chars += first_sentence_translation["char_count"]
+			print("Detected source language: \"{}\"".format(source_lang))
 		
 		self.check_lang_support(source_lang, self.config["translator_provider"])
 		target_lang = self.config["target_lang"]
@@ -118,14 +129,29 @@ class TranslatorWriter:
 				if polyg_sup_trg is not np.nan:
 					target += "\\begin{{{}}}\n".format(polyg_sup_trg)
 		
+		if self.config["skip_words"] == "true":
+			if self.config["learning_method"] == "true":
+				try:
+					word_skip_list_file = open("./word_skip_lists/{}.txt".format(source_lang),
+											   "r", encoding="utf-8")
+					word_skip_list = [line.replace("\n", "") for line in word_skip_list_file.readlines()]
+				except FileNotFoundError:
+					print("Warning: no word skip list was found for source language \"{}\".\
+						  No words will be skipped in the word-by-word translation.".format(source_lang))
+			else:
+				print("Warning: skip_words was enabled while learning_method was disabled.\
+					  Words are only skipped in the word-by-word translation generated when\
+					  learning_method is enabled.")
+		
 		for source_sentence in source_sentences:
 			sentence_translation = self.translate(source_sentence, source_lang)
 			target_sentence = sentence_translation["target"]
 			translated_chars += sentence_translation["char_count"]
 			
 			word_by_word_translation = []
-			for source_word in source_sentence[:-1].lower().split():
-				source_word_clean = re.sub("[\W+]", "", source_word)
+			for source_word in source_sentence.lower().split():
+				source_word_clean = re.sub(r"[\W+]", "", source_word)
+				if self.is_in_skip_list(source_word_clean): continue
 				word_translation = self.translate(source_word_clean, source_lang)
 				target_word = word_translation["target"]
 				translated_chars += word_translation["char_count"]
@@ -179,10 +205,10 @@ class TranslatorWriter:
 				target_file_name = "{}_translated_{}_{}/{}_translated_{}_{}.tex".format\
 				(
 					ntpath.basename(source_file_name).partition(".")[0],
-					self.config["source_lang"],
+					source_lang,
 					self.config["target_lang"],
 					ntpath.basename(source_file_name).partition(".")[0],
-					self.config["source_lang"],
+					source_lang,
 					self.config["target_lang"]
 				)
 				os.makedirs(os.path.dirname(target_file_name), exist_ok=True)
@@ -190,21 +216,61 @@ class TranslatorWriter:
 				target_file_name = "{}_translated_{}_{}.tex".format\
 				(
 					ntpath.basename(source_file_name).partition(".")[0],
-					self.config["source_lang"],
+					source_lang,
 					self.config["target_lang"]
 				)
-			
-		target_file = open(target_file_name, "w", encoding="utf-8")
+		
+		output_dir = self.config["output_dir"].replace("\\", "/")
+		if output_dir[-1] not in ["/", "\\"]:
+			output_dir += "/"
+		
+		target_file = open(output_dir + target_file_name, "w", encoding="utf-8")
 		target_file.write(target)
 		target_file.close()
 		
 		print()
-		print("{} characters translated".format(translated_chars))
-		print("Translation written to ./{}".format(target_file_name))
+		
+		if self.config["track_translated_chars"] == "true":
+			print("{} characters translated".format(translated_chars))
+		char_log_file = open("translated_chars.log", "a", encoding="utf-8")
+		char_log_file.write("[{}]\t{}\n".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), translated_chars))
+		char_log_file.close()
+		
+		print("Translation written to {}".format(output_dir + target_file_name))
+
+def check_config_option(config, key, option):
+	if key == "output_dir":
+		return 0 # valid path must be checked elsewhere
+	elif key == "translator_provider":
+		possible_options = ["google", "google_cloud", "bing"] + [""]
+	elif key == "source_lang":
+		return 0 # language support is checked in TranslatorWriter class
+	elif key == "target_lang":
+		return 0 # language support is checked in TranslatorWriter class
+	elif key == "verbose":
+		possible_options = ["true", "false"] + [""]
+	elif key == "write_mode":
+		possible_options = ["txt", "tex"] + [""]
+	elif key == "tex_build_dir":
+		possible_options = ["true", "false"] + [""]
+	elif key == "learning_method":
+		possible_options = ["true", "false"] + [""]
+	elif key == "skip_words":
+		possible_options = ["true", "false"] + [""]
+	elif key == "track_translated_chars":
+		possible_options = ["true", "false"] + [""]
+	else:
+		return 1 # invalid key
+	
+	if option in possible_options:
+		return 0 # valid key and option
+	else:
+		return 2 # valid key, invalid option
 
 def load_config():
 	config =\
 	{
+		"output_dir": "",
 		"translator_provider": "",
 		"source_lang": "",
 		"target_lang": "",
@@ -212,9 +278,11 @@ def load_config():
 		"write_mode": "",
 		"tex_build_dir": "",
 		"learning_method": "",
+		"skip_words": "",
+		"track_translated_chars": ""
 	}
 	
-	config_file = open("config", "r")
+	config_file = open("config.txt", "r", encoding="utf-8")
 	
 	line_count = 0
 	
@@ -232,39 +300,16 @@ def load_config():
 		key = partition[0].strip()
 		option = partition[2].strip()
 		
-		if key == "translator_provider":
-			if option in ["google", "google_cloud", "bing"] + [""]:
-				config["translator_provider"] = option
-			else:
-				raise ValueError("option \"{}\" unknown for key \"{}\" in config line {}: \"{}\"".format(option, key, line_count, line))
-		elif key == "source_lang":
-			pass # language support is checked in TranslatorWriter class
-		elif key == "target_lang":
-			pass # language support is checked in TranslatorWriter class
-		elif key == "verbose":
-			if option in ["true", "false"] + [""]:
-				config["verbose"] = option
-			else:
-				raise ValueError("option \"{}\" unknown for key \"{}\" in config line {}: \"{}\"".format(option, key, line_count, line))
-		elif key == "write_mode":
-			if option in ["txt", "tex"] + [""]:
-				config["write_mode"] = option
-			else:
-				raise ValueError("option \"{}\" unknown for key \"{}\" in config line {}: \"{}\"".format(option, key, line_count, line))
-		elif key == "tex_build_dir":
-			if option in ["true", "false"] + [""]:
-				config["tex_build_dir"] = option
-			else:
-				raise ValueError("option \"{}\" unknown for key \"{}\" in config line {}: \"{}\"".format(option, key, line_count, line))
-		elif key == "learning_method":
-			if option in ["true", "false"] + [""]:
-				config["learning_method"] = option
-			else:
-				raise ValueError("option \"{}\" unknown for key \"{}\" in config line {}: \"{}\"".format(option, key, line_count, line))
-		else:
-			raise ValueError("key \"{}\" unknown in line {}: \"{}\"".format(key, line_count, line))
+		check_config_option_exit_code = check_config_option(config, key, option)
+		if check_config_option_exit_code == 1:
+			raise ValueError("key \"{}\" unknown in config line {}: \"{}\"".format(key, line_count, line))
+		elif check_config_option_exit_code == 2:
+			raise ValueError("option \"{}\" unknown for key \"{}\" in config line {}: \"{}\"".format(option, key, line_count, line))
+		config[key] = option
 		
 	# default options
+	if config["output_dir"] == "":
+		config["output_dir"] = "./"
 	if config["translator_provider"] == "":
 		config["translator_provider"] = "google"
 	if config["source_lang"] == "":
@@ -279,8 +324,14 @@ def load_config():
 		config["tex_build_dir"] = "false"
 	if config["learning_method"] == "":
 		config["learning_method"] = "false"
+	if config["skip_words"] == "":
+		config["skip_words"] = "false"
+	if config["track_translated_chars"] == "":
+		config["track_translated_chars"] = "false"
 	
 	config_file.close()
+	
+	print(config)
 	
 	return config
 

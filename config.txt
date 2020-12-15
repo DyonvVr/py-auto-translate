@@ -1,5 +1,9 @@
 # CONFIGURATION
 
+# Directory where the output file will be written. Default is directory where auto_translate.py
+# is located. Accepts a relative path with respect to this directory.
+output_dir = ..
+
 # Which provider to use for translation.
 # Option "google" (default) uses HTTP requests to https://translate.google.com to generate
 # translations. This is free, but may result in a temporary IP ban if quota are exceeded.
@@ -8,7 +12,7 @@
 # costs of using GCP.
 # Option "bing" uses HTTP requests to https://www.bing.com/translator. Free, but may result
 # in a temporary IP ban.
-translator_provider = google_cloud
+translator_provider = bing
 
 # Language from which to translate. Must be provided as a language code or "auto" (for automatic
 # language detection).
@@ -36,5 +40,15 @@ tex_build_dir = true
 
 # Whether to implement an Ilya Frank style translation method. Besides the sentence, this also
 # provides a word-by-word translation. Warning: setting this to "true" significantly increases the
-# number of calls made to the translation API. Options: "true", "false" (default).
+# number of requests made to the translation provider. Options: "true", "false" (default).
 learning_method = true
+
+# Whether to skip words, from a word skip list for the source language, in the word-by-word
+# translation when learning_method is enabled. A file named "<language code>.txt" must be provided
+# in the word_skip_lists folder. Options: "true", "false" (default).
+skip_words = false
+
+# Whether to count the number of translated characters and write this number to a log file. Useful
+# when using Google Cloud Translation API with a character limit. Options: "true", "false"
+# (default).
+track_translated_chars = true
