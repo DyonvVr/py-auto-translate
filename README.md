@@ -29,7 +29,11 @@ python auto_translate.py <text file>
 This produes an output (either as a text or LaTeX file) in the output directory (specified in the `config` file).
 
 ## Skipping words in word-by-word translation
-Asdf
+When generating word-by-word translations, it may be useful to skip certain words in order to prevent bloating the word-by-word translation with words that are already known to the reader.
+Auto translate has a feature built in to skip words specified in a word skip list.
+To use this feature, enabled word skipping in the configuration file and provide a text file named `<language code>.txt` in the directory `./word_skip_lists`, where `<language code>` is the language code of the (detected) source language used by the translation provider and `.` is the directory where `auto-translate.py` is located.
+This word skip list must contain each word on a *separate line*. Instead of words, you can also use regular expressions.
+The repository contains an example word skip list for English.
 
 ## Configuration
 The `config` file lists several options for Auto translate (such as which translation provider to use) which can be set to one own's preferences.
