@@ -13,6 +13,7 @@ Furthermore install the following dependencies (for example via the `pip install
 - `googletrans==3.1.0a0`
 - `translators>=4.7.10`
 - `google.cloud`
+- `google-cloud-translate`
 - `ntpath`
 - `numpy`
 - `pandas`
